@@ -22,7 +22,31 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+      /*
+      This was pulled from: 
+      https://stackoverflow.com/questions/48373119/change-bootstrap-4-checkbox-background-color
+      */
+      
+      .custom-control-label:before{
+           background-color:#F9F2F0;
+      }
+      .custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+          background-color: #F5525D;
+      }
+      .custom-checkbox .custom-control-input:checked~.custom-control-label::after{
+          background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='white' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+      }
+      .custom-control-input:active~.custom-control-label::before{
+          background-color:#A63A44;
+      }
+      /** Set focus shadow color **/
+      .custom-checkbox .custom-control-input:focus~.custom-control-label::before{
+          box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem #A63A44; 
+      }
+  </style><!--was not able to get above styly block to load from /stylesheet/Style.css -->
+    <title>It's Pizza time!</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -38,4 +62,7 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </html>
