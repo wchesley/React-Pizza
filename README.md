@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Dev env Set up: 
+
+To run on your own machine clone this directory, then, in the root of this repo, run `npm install`. 
+This will satisfy any missing dependencies, once node has installed for this app you can start dev server via `npm start`.
+
 ## Available Scripts
 
 In the project directory, you can run:
