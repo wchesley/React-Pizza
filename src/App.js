@@ -1,20 +1,47 @@
+/****************************************
+  TODO:
+    pizza's displayed as "cards"
+      -Update image file with unique ones foreach pizza type
+    Data Handling
+    
+***************************************/
+
 import React, { Component } from 'react';
 import './index.css';
-//TODO: 
+
 class App extends Component {
   render() {
     return (
       <div>
-      <NavBar />
-        <div className="banner jumbotron text-center">
-          <h1>It's Pizzza Time!</h1>
-          <p className="sub_banner">Find the lowest price pizza near you!</p>        
+        <NavBar />
+        <Header />
+        <div id="search_box" className="col-6 mx-auto main_div">
+          <form>
+            <div className="card-group">
+            <PizzaType pizza-type='cheese' pizza-provider='Pizza Planet' />
+            <PizzaType pizza-type='pepperoni' pizza-provider="La Bella's" />
+            <PizzaType pizza-type='supreme' pizza-provider="Giovani's" />
+            </div>
+            <UserInfo UserInfo="Email" />
+            <UserInfo UserInfo="Zip" />
+          </form>
         </div>
-        <SearchBox />
       </div>
     );
   }
 }
+
+class Header extends React.Component {
+  render() {
+    return(
+      <div className="banner jumbotron text-center">
+        <h1>It's Pizzza Time!</h1>
+        <p className="sub_banner">Find the lowest price pizza near you!</p>        
+      </div>
+    );
+  }
+}
+
 class NavBar extends React.Component {
   render() {
       return(
@@ -26,71 +53,37 @@ class NavBar extends React.Component {
   }
 }
 
-class SearchBox extends React.Component {
-  render() {
-      return(
-      <div id="search_box" className="col-6 mx-auto main_div">
-          <div className="custom-control custom-checkbox">
-          <PizzaType />
-          <ZipBox />
-          </div> 
-      </div> 
-      );
-  }
-}
-
 class PizzaType extends React.Component {
+  constructor(props){
+    super(props);
+  }
   render() {
       return(
-          <div className="custom-control custom-checkbox">
-            <ChzPizza />
-            <PeppPizza />
-            <SupremePizza />
+           <div className="card">
+            <img className="card-img-top" src="..." alt="Card image cap" />
+            <div className="card-body">
+              <h5 className="card-title">{this.props.pizza-type}</h5>
+              <p className="card-text">We've found a delicous {this.props.pizza-type} pizza near you from {this.props.pizza-provider}</p>
+              <a href="#" className="button btn btn-primary">Order Now!</a>
+              <div className="card-footer">
+                <p className="card-text"><small className="text-muted">Last updated 5 mins ago</small></p>
+              </div>
+            </div>
           </div>
+        
       );
   }
 }
 
-class ChzPizza extends React.Component {
-  render() {
-    return(
-      <div>
-      <input type="checkbox" className="custom-control-input" id="choice_chz" />
-      <label class="custom-control-label" for="choice_chz">Cheese</label>
-      </div>
-    );
+class UserInfo extends React.Component {
+  constructor(props) {
+    super(props);
   }
-}
-
-class PeppPizza extends React.Component {
-  render() {
-    return(
-      <div>
-        <input type="checkbox" class="custom-control-input" id="choice_pepp" />
-        <label class="custom-control-label" for="choice_pepp">Pepperoni</label>
-      </div>
-    );
-  }
-}
-
-class SupremePizza extends React.Component {
-  render() {
-    return(
-      <div>
-        <input type="checkbox" class="custom-control-input" id="choice_super" />
-        <label class="custom-control-label" for="choice_super">Supreme</label>
-      </div>
-    );
-  }
-}
-
-class ZipBox extends React.Component {
   render() {
       return(
       <div className="container">
-          <label for="search_zip">Please Enter Zip Code:</label>
-          <input className="zip_box" id="search_zip" type="text" />
-          <button className="search_btn"id="search_btn" onclick={<FoundPizza />}>Search</button>
+          <label for={this.props.UserInfo}>Please Enter your {this.props.UserInfo}:</label>
+          <input className="zip_box" id={this.props.UserInfo} type="text" />
       </div>
       );
   }
