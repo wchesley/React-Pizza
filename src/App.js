@@ -17,10 +17,10 @@ class App extends Component {
         <Header />
         <div id="search_box" className="col-6 mx-auto main_div">
           <form>
-            <div className="card-group">
-            <PizzaType pizza-type='cheese' pizza-provider='Pizza Planet' />
-            <PizzaType pizza-type='pepperoni' pizza-provider="La Bella's" />
-            <PizzaType pizza-type='supreme' pizza-provider="Giovani's" />
+            <div className="pizza-card-group card-group">
+            <PizzaType pizza='cheese' provider="Pizza Planet" />
+            <PizzaType pizza='pepperoni' provider="La Bella's" />
+            <PizzaType pizza='supreme' provider="Giovani's" />
             </div>
             <UserInfo UserInfo="Email" />
             <UserInfo UserInfo="Zip" />
@@ -60,17 +60,13 @@ class PizzaType extends React.Component {
   render() {
       return(
            <div className="card">
-            <img className="card-img-top" src="..." alt="Card image cap" />
+            <img className="card-img-top" src={this.props.pizza} alt={this.props.pizza} />
             <div className="card-body">
-              <h5 className="card-title">{this.props.pizza-type}</h5>
-              <p className="card-text">We've found a delicous {this.props.pizza-type} pizza near you from {this.props.pizza-provider}</p>
+              <h5 className="card-title">{this.props.pizza}</h5>
+              <p className="card-text">We've found a delicous {this.props.pizza} pizza near you from {this.props.provider}</p>
               <a href="#" className="button btn btn-primary">Order Now!</a>
-              <div className="card-footer">
-                <p className="card-text"><small className="text-muted">Last updated 5 mins ago</small></p>
               </div>
             </div>
-          </div>
-        
       );
   }
 }
@@ -105,6 +101,9 @@ class FoundPizza extends React.Component {
 }
 
 class OrderPizza extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return(
       <div className="col-6 mx-auto main_div">

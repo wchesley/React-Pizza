@@ -120,3 +120,8 @@ li a:hover {
   text-decoration: underline;
   border-radius: 10px;
 }
+
+.pizza-card-group {
+  margin-top:1vw;
+  padding:1px;
+}
