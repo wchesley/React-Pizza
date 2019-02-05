@@ -13,6 +13,8 @@ class Main extends React.Component {
             <Switch>
                 <Route path='/' component={Home}/>
                 <Route path='/sign_up' component={sign_up} />
+                <Route path='/order' component={order} />
+                <Route path='/checkout' Component={checkout} />
             </Switch>
         </main>
     );
