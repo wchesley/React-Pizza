@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import UserInfo from './Home'
 import './index.css'
 
@@ -22,7 +23,7 @@ class PasswordBox extends Component {
         super(props);
     };
     render() {
-        retrurn(
+        return(
             <div className="container">
                 <label for={this.props.password}>Please {this.props.doublePass}} your {this.props.password}:</label>
                 <input className="zip_box" id={this.props.password} type="password" />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import { Link } from 'react-router-dom'
 
 class Home extends React.Component {
     render() {
@@ -27,7 +27,7 @@ class PizzaType extends React.Component {
                 <div className="card-body">
                     <h5 className="card-title">{this.props.pizza}</h5>
                     <p className="card-text">"We've found a delicous " + {this.props.pizza} + " pizza near you from" + {this.props.provider}</p>
-                    <a href="#" id={this.props.pizza} className="button btn btn-primary">Order Now!</a>
+                    <Link to='/order' className="button btn btn-primary">Order Now!</Link>
                 </div>
             </div>
         );
