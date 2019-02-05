@@ -6,8 +6,10 @@
     
 ***************************************/
 
-import React, { Component } from 'react';
-import './index.css';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import './index.css'
+import Main from './Main'
 
 class App extends Component {
   render() {
@@ -15,23 +17,13 @@ class App extends Component {
       <div>
         <NavBar />
         <Header />
-        <div id="search_box" className="col-6 mx-auto main_div">
-          <form>
-            <div className="pizza-card-group card-group">
-            <PizzaType pizza='cheese' provider="Pizza Planet" />
-            <PizzaType pizza='pepperoni' provider="La Bella's" />
-            <PizzaType pizza='supreme' provider="Giovani's" />
-            </div>
-            <UserInfo UserInfo="Email" />
-            <UserInfo UserInfo="Zip" />
-          </form>
-        </div>
+        <Main />
       </div>
     );
   }
 }
 
-class Header extends React.Component {
+class Header extends Component {
   render() {
     return(
       <div className="banner jumbotron text-center">
@@ -46,41 +38,9 @@ class NavBar extends React.Component {
   render() {
       return(
       <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="sign_up.html">Sign Up</a></li>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/sign-up'>Login or Sign up</Link></li>
       </ul>
-      );
-  }
-}
-
-class PizzaType extends React.Component {
-  constructor(props){
-    super(props);
-  }
-  render() {
-      return(
-           <div className="card">
-            <img className="card-img-top" src={this.props.pizza} alt={this.props.pizza} />
-            <div className="card-body">
-              <h5 className="card-title">{this.props.pizza}</h5>
-              <p className="card-text">We've found a delicous {this.props.pizza} pizza near you from {this.props.provider}</p>
-              <a href="#" className="button btn btn-primary">Order Now!</a>
-              </div>
-            </div>
-      );
-  }
-}
-
-class UserInfo extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-      return(
-      <div className="container">
-          <label for={this.props.UserInfo}>Please Enter your {this.props.UserInfo}:</label>
-          <input className="zip_box" id={this.props.UserInfo} type="text" />
-      </div>
       );
   }
 }
