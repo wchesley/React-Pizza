@@ -28,7 +28,7 @@ class PizzaType extends Component {
                 <img className="card-img-top" src={'./img/' + this.props.pizza + '.png'} alt={this.props.pizza} />
                 <div className="card-body">
                     <h5 className="card-title">{this.props.pizza}</h5>
-                    <p className="card-text">"We've found a delicous {this.props.pizza} pizza near you from {this.props.provider}</p>
+                    <p className="card-text">We've found a delicous {this.props.pizza} pizza near you from {this.props.provider}</p>
                     <Link to='/order' className="button btn btn-primary">Order Now!</Link>
                 </div>
             </div>
