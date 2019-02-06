@@ -22,7 +22,7 @@ ZIP up the directory containing your work and submit it here (follow the example
 
 ## To run locally: 
 
-To run on your own machine clone this repository, then, in the root of this repo, run `npm install`. 
+To run on your own machine clone this repository, then, in the root of this repo, run `npm install`<br>After the initial install, there's one further dependency to satify, react-router-dom, this can be installed by `npm install --save react-router-dom` 
 
 This will satisfy any missing dependencies, once node has installed for this app you can start dev server via `npm start`
 
