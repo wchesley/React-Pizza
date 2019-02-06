@@ -21,10 +21,12 @@ class App extends Component {
       <div>
         <NavBar />
         <Header />
-        <div class="main_div col-6">
+        <div class="row justify-content-center">
+          <div class="col-6 main_div">
           <Main />
+          </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

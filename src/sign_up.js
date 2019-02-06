@@ -25,7 +25,7 @@ class PasswordBox extends Component {
     render() {
         return(
             <div className="container">
-                <label for={this.props.password}>Please {this.props.doublePass}} your {this.props.password}:</label>
+                <label for={this.props.password}>Please {this.props.doublePass} your {this.props.password}:</label>
                 <input className="zip_box" id={this.props.password} type="password" />
             </div>
         );

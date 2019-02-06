@@ -2,19 +2,19 @@ import React from 'react'
 import './index.css'
 import { Switch, Route } from 'react-router-dom'
 import Home from './Home'
-import sign_up from './sign_up'
-import order from './order'
-import checkout from './checkout'
+import SignUp from './sign_up'
+import OrderPizza from './order'
+import Checkout from './checkout'
 
 class Main extends React.Component {
     render() {
     return(
         <main>
             <Switch>
-                <Route path='/' component={Home}/>
-                <Route path='/sign_up' component={sign_up} />
-                <Route path='/order' component={order} />
-                <Route path='/checkout' Component={checkout} />
+                <Route exact path='/' component={Home}/>
+                <Route path='/sign_up' component={SignUp} />
+                <Route path='/order' component={OrderPizza} />
+                <Route path='/checkout' Component={Checkout} />
             </Switch>
         </main>
     );
