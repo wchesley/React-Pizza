@@ -21,7 +21,7 @@ class App extends Component {
       <div>
         <NavBar />
         <Header />
-        <div class="main_div">
+        <div class="main_div col-6">
           <Main />
         </div>
       </div>
