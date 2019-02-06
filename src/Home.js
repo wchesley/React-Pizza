@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import './index.css'
 
 class Home extends Component {
     render() {
@@ -29,7 +30,7 @@ class PizzaType extends Component {
                 <div className="card-body">
                     <h5 className="card-title">{this.props.pizza}</h5>
                     <p className="card-text">We've found a delicous {this.props.pizza} pizza near you from {this.props.provider}</p>
-                    <Link to='/order' className="button btn btn-primary">Order Now!</Link>
+                    <Link to='/order' className="btn btn-primary">Order Now!</Link>
                 </div>
             </div>
         );

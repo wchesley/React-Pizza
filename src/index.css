@@ -6,16 +6,19 @@ Blue: B7E4F2
 Green: 6F9940
 White: F9F2F0
 */
+
 body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   background-image: url("img/Pizza-Pattern-Vector.jpg");
   background-color: #B7E4F2;
 }
+
 button {
   background-color: #6F9940;
   border: none;
   color: white;
 }
+
 ul {
   list-style-type: none;
   padding: 5px;
@@ -24,6 +27,7 @@ ul {
   position: fixed;
   overflow: hidden;
 }
+
 li a {
   float: left;
   margin: 1px;
@@ -34,13 +38,16 @@ li a {
   border-color: #A63A44;
   padding: 1vw;
 }
+
 li a:hover {
   background-color: #A63A44;
   text-decoration: underline;
 }
+
 .sign_up_form {
   margin: 3vw; 
 }
+
 .main_div {
   display: block;
   margin-top: 2vh;
@@ -50,6 +57,7 @@ li a:hover {
   height:80vh;
   width: 100vw;
 }
+
 .banner {
   background-color: #F5525D;
   padding-top: 6vw;
@@ -58,38 +66,37 @@ li a:hover {
   text-align: center;
   font-size: 48px;
 }
+
 .sub_banner {
   font-size: 20px;
 }
+
 .custom-control-label {
   margin: 2vh;
 }
-.search_btn {
-  height: 15vh;
-  width: 30vw;
-  color: white;
-  margin-left: 5vw;
-  margin-right: 20vw;
-  margin-top: 10vh;
-  margin-bottom: 10vh;
+
+.btn {
   background-color: #6F9940;
-  border: none;
-  border-radius: 10px;
+  border-color: #6F9940;
 }
+
 .zip_box {
   width: 40vw;
   border-radius: 5px;
   border: 1px solid #F5525D;
 }
+
 .result {
   margin-top: 5%;
   margin-bottom: 3vh;
   border: none;
   display: none;
 }
+
 .result-group div:hover {
   background-color: #F9F2F0;
 }
+
 .result-group {
   margin: 2vw;
   box-shadow: 5px 0px 5px; 
@@ -98,27 +105,20 @@ li a:hover {
   background-color: #B7E4F2;
   color: #A63A44; 
 }
+
 .pizza-desc {
  margin-left: 10vw;
 }
+
 .pizza-icon {
   height: 5vh;
   width: 2.5vw;
   position: relative;
   margin: 0.5vw; 
 }
+
 .price-lbl {
   margin-left: 5vw;
-}
-.order-btn {
-  height: 10vh;
-  width: 10vw;
-  margin-left: 5vw;
-  margin-bottom: 2vh;
-  color: white;
-  font-weight: bold;
-  text-decoration: underline;
-  border-radius: 10px;
 }
 
 .pizza-card-group {
