@@ -3,10 +3,8 @@
     pizza's displayed as "cards"
       -Update image file with unique ones foreach pizza type
     Data Handling
-    React Router
-    Order page
     Checkout page
-    Sign up page
+      -Cannot dispay atm, ref: ISSUE: #1 https://github.com/wchesley/React-Pizza/issues/1 
 
 ***************************************/
 
@@ -21,8 +19,8 @@ class App extends Component {
       <div>
         <NavBar />
         <Header />
-        <div class="row justify-content-center">
-          <div class="col-6 main_div">
+        <div className="row justify-content-center">
+          <div className="col-6 main_div">
           <Main />
           </div>
         </div>
@@ -52,24 +50,5 @@ class NavBar extends React.Component {
     );
   }
 }
-/**************************************************************
- * Dunno if I want to use this just yet... 
- 
-class FoundPizza extends React.Component {
-  render() {
-    return (
-      <div className="col-9 mx-auto result" id="results_box">
-        <div className="container result-group" id="links_div">
-          <img src="img/Pizza-icon.jpg" className="pizza-icon" alt="Pizza!" />
-          <p className="pizza-desc">Pizza was found in your area! <br />Provided by: Company X</p>
-          <label className="price-lbl">Price: $$</label>
-          <button className="order-btn" id="order" onclick={<OrderPizza />}>Order Now!</button>
-        </div>
-      </div>
-    );
-  }
-}
-***************************************************************/
-
 
 export default App;

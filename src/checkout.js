@@ -1,18 +1,42 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import UserInfo from './Home'
+import './index.css'
 
-class Checkout extends Component    {
+class CheckOut extends Component {
     render() {
-        return(
-            <form>
-                <UserInfo UserInfo='Name' />
-                <UserInfo UserInfo='Phone Number' />
-                <UserInfo UserInfo='Address' />
-                <UserInfo UserInfo='Payment' />
-            </form>
+        return (
+            <div>
+                <form>
+                    <Input type='name' />
+                </form>
+            </div>
         );
     }
 }
 
-export default Checkout; 
+class Input extends Component {
+    constructor(props) {
+        super(props);
+    };
+    render() {
+        return (
+            <div className="mb-3">
+                <label for={this.props.type}>{this.props.type}</label>
+                <input type={Text} className="form-control" id={this.props.type}></input>
+            </div>
+        );
+    }
+}
+
+class Order extends Component {
+    render() {
+        return (
+            <div>
+                <hr className='mb-4' />
+                <Link to='/order' className='btn btn-primary'>Checkout</Link>
+            </div>
+        );
+    }
+}
+
+export default CheckOut; 
