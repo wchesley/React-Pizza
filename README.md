@@ -31,6 +31,13 @@ To stop the server, press Control-C in the console.<br>
 Created following [this tutorial](https://www.tutorialspoint.com/reactjs/reactjs_environment_setup.htm)<br>
 There are two sets of instructions on this page, this version was built via create-react-app tool (second set of instructions listed on page) 
 
+## TODO: 
+* Rendering in checkout page
+* Data handling across pages
+* Database?
+* Maps integration
+* Prepp for conversion to React-native
+
 ## Available Scripts
 
 In the project directory, you can run:
