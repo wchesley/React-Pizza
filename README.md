@@ -1,24 +1,38 @@
-# Assignment 1: React Pizza
+# Assignment 3: React Pizza - Complete Web Implementation
 
 ## Deliverables: 
 
-### Assignment 1
+Due date: Mar. 7th 2019
 
-From assignment 0 you should have attempted the design, mockup and prototyping of a user interface for a "Price Line" style pizza app.
+### Assignment 3
 
-Later on, I told you to model your work based on this: https://reactjs.org/docs/thinking-in-react.html
+You've followed along with me all semester so far with the Pizza Bandit program.  This assignment sees us completing that assignment for the ReactJS-only portion of the course.  You'll accomplish and complete the following:
 
-So, our journey here is quite simple: translate your HTML/Bootstrap work into ReactJS components.
+* Create a basic ReactJS app
+* Create a form that allows a user to sign up with an account
+  Email and password. Save this information to Firebase
+* Create a form that allows a user to order a pizza
+* user must be signed in
+* use location services to get lat/lon
+* use a web service to get ZIP code from lat lon
+* select from three pizzas - cheese, pepperoni, and supreme
+* Order sourcing and order saving
+* Using ZIP code find nearby Pizza places - we'll use a real web service here
+* Confirmation and delivery screen
+* finalize delivery street address
+* show delivery street address on mapbox
+* You'll save the order to Firebase
+* You'll confirm the order via an email
+* This is a significant undertaking and the remainder of our class time between then and now will focus on these requirements.
 
-Guidance for this may come from at least these three sources:
+The first eight chapters of the Thomas book are instructive in getting this completed.
 
-The Book: Chapters 1-3 in particular
-The Documentation: Start here (https://reactjs.org/docs/hello-world.html) and go through section 12
-My videos - I just posted two on this topic (look in Lessons/Videos)
-What to Submit
+Submitting your Work
 
-Copy and paste the URL to your Github repo here
-ZIP up the directory containing your work and submit it here (follow the example from my videos)
+You'll deliver this app via the following means:
+
+Github repository URL
+Zipped up and uploaded here
 
 ## To run locally: 
 
