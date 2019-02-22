@@ -3,12 +3,20 @@ import { Errors } from './error';
 import { Link } from 'react-router-dom'
 import './index.css'
 
+/************************************
+ * TODO: 
+ * save data to firebase
+ * link page to order after registering
+ * css styling
+************************************/
+
 class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
             password: '',
+            verifyPass: '',
             formErrors: { email: '', password: '' },
             emailValid: false,
             passwordValid: false,
@@ -27,6 +35,7 @@ class SignUp extends Component {
         let fieldValidationErrors = this.state.formErrors;
         let emailValid = this.state.emailValid;
         let passwordValid = this.state.passwordValid;
+        let verifyPass = this.state.verifyPass;
 
         switch (fieldName) {
             case 'email':
@@ -36,10 +45,10 @@ class SignUp extends Component {
                 break;
             case 'password':
                 passwordValid = value.length >= 8;
-                passwordValid = value.match(/^(?=.*[A-Z])/i);
-                passwordValid = value.match(/^(?=.*[0-9])/i);
-                fieldValidationErrors.password = passwordValid ? '' : ' is invalid, must contain 8 letters, 1 capital letter and 1 number';
-
+                passwordValid = value.match(/^(?=.*[A-Z])/i);//verify if a capital letter present
+                passwordValid = value.match(/^(?=.*[0-9])/i);//verify if a number is present
+                passwordValid === verifyPass;
+                fieldValidationErrors.password = passwordValid ? '' : ' is invalid, must contain 8 letters, 1 capital letter and 1 number. Both password must match exactly.';
                 break;
             default:
                 break;
@@ -51,7 +60,7 @@ class SignUp extends Component {
         }, this.validateForm);
     }
 
-    //if all is well sets true foreach: (in effect, will enable submit button)
+    //if email and password check out then enable submit btn
     validateForm() {
         this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
     }
@@ -60,10 +69,17 @@ class SignUp extends Component {
         return (error.length === 0 ? '' : 'has-error');
     }
 
+    register(){
+        if(this.state.formValid === true)
+        {
+            //save data to firebase, send user to order pizza page
+        }
+    }
+
     render() {
         return (
-            <>
-                <h2>Sign up</h2>
+            <form onSubmit={}>
+                <h2>Sign up - It's Piza Time!</h2>
                 <div className="container">
                     <Errors formErrors={this.state.formErrors} />
                 </div>
@@ -89,15 +105,19 @@ class SignUp extends Component {
                         value={this.state.password}
                         onChange={this.handleUserInput} />
                 </div>
-                <button type="submit" className="btn btn-primary" disabled={!this.state.formValid}>Sign up</button>
-                <div className="containter">
-                    <p>
-                        You've typed:<br />
-                        Email: {this.state.email}<br />
-                        Password: {this.state.password}
-                    </p>
+                <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
+                    <label htmlFor="password">Re-enter Password</label>
+                    <input
+                        type="password"
+                        id="verifyPass"
+                        className="form-control"
+                        name="verifyPassword"
+                        placeholder="Re-enter Password"
+                        value={this.state.verifyPass}
+                        onChange={this.handleUserInput} />
                 </div>
-            </>
+                <button type="submit" className="btn btn-primary" disabled={!this.state.formValid} onClick={}>Sign up</button>                
+            </form>
         )
     }
 }
