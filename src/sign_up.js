@@ -1,62 +1,104 @@
 import React, { Component } from 'react'
+import { Errors } from './error';
 import { Link } from 'react-router-dom'
 import './index.css'
 
 class SignUp extends Component {
-    render() {
-        return (
-            <div>
-                <form>
-                    <br></br>
-                    <UserInfo UserInfo='Username' />
-                    <br></br>
-                    <UserInfo UserInfo='Email' />
-                    <br></br>
-                    <PasswordBox password='password' doublePass='enter' />
-                    <PasswordBox password='password' doublePass='re-enter' />
-                    <div className='row justify-content-center'>
-                        <Submit />
-                    </div>
-                    
-                </form>
-            </div>
-        );
-    }
-}
-
-class PasswordBox extends Component {
     constructor(props) {
         super(props);
-    };
-    render() {
-        return(
-            <div className="container">
-                <label for={this.props.password}>Please {this.props.doublePass} your {this.props.password}:</label>
-                <input className="zip_box" id={this.props.password} type="password" />
-            </div>
-        );
+        this.state = {
+            email: '',
+            password: '',
+            formErrors: { email: '', password: '' },
+            emailValid: false,
+            passwordValid: false,
+            formValid: false
+        }
     }
-}
 
-class UserInfo extends React.Component {
-    constructor(props) {
-        super(props);
-    };
+    handleUserInput = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({ [name]: value },
+            () => { this.validateField(name, value) });
+    }
+
+    validateField(fieldName, value) {
+        let fieldValidationErrors = this.state.formErrors;
+        let emailValid = this.state.emailValid;
+        let passwordValid = this.state.passwordValid;
+
+        switch (fieldName) {
+            case 'email':
+                //Validate email via RegEx: 
+                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+                fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+                break;
+            case 'password':
+                passwordValid = value.length >= 8;
+                passwordValid = value.match(/^(?=.*[A-Z])/i);
+                passwordValid = value.match(/^(?=.*[0-9])/i);
+                fieldValidationErrors.password = passwordValid ? '' : ' is invalid, must contain 8 letters, 1 capital letter and 1 number';
+
+                break;
+            default:
+                break;
+        }
+        this.setState({
+            formErrors: fieldValidationErrors,
+            emailValid: emailValid,
+            passwordValid: passwordValid
+        }, this.validateForm);
+    }
+
+    //if all is well sets true foreach: (in effect, will enable submit button)
+    validateForm() {
+        this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
+    }
+
+    errorClass(error) {
+        return (error.length === 0 ? '' : 'has-error');
+    }
+
     render() {
         return (
-            <div className="container">
-                <label for={this.props.UserInfo}>{this.props.UserInfo}:</label>
-                <input className="zip_box" id={this.props.UserInfo} type="text" />
-            </div>
-        );
-    }
-}
-
-class Submit extends Component {
-    render() {
-        return(
-            <Link to='/' className="btn btn-primary">Register</Link>
-        );
+            <>
+                <h2>Sign up</h2>
+                <div className="container">
+                    <Errors formErrors={this.state.formErrors} />
+                </div>
+                <div className={`form-group ${this.errorClass(this.state.formErrors.email)}`}>
+                    <label htmlFor="email">Email address</label>
+                    <input
+                        type="email"
+                        id="userEmail"
+                        required className="form-control"
+                        name="email"
+                        placeholder="Email"
+                        value={this.state.email}
+                        onChange={this.handleUserInput} />
+                </div>
+                <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        id="userPass"
+                        className="form-control"
+                        name="password"
+                        placeholder="Password"
+                        value={this.state.password}
+                        onChange={this.handleUserInput} />
+                </div>
+                <button type="submit" className="btn btn-primary" disabled={!this.state.formValid}>Sign up</button>
+                <div className="containter">
+                    <p>
+                        You've typed:<br />
+                        Email: {this.state.email}<br />
+                        Password: {this.state.password}
+                    </p>
+                </div>
+            </>
+        )
     }
 }
 
