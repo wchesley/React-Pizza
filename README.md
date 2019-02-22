@@ -38,7 +38,12 @@ You'll deliver this app via the following means:
 
 ## To run locally: 
 
-To run on your own machine clone this repository, then, in the root of this repo, run <br>`npm install`<br>After the initial install, there's one further dependency to satify, react-router-dom, this can be installed by <br>`npm install --save react-router-dom` 
+To run on your own machine clone this repository, then, in the root of this repo, run <br>`npm install`<br>After the initial install, there are a few other further dependencies to satify, 
+
+* react-router-dom: this can be installed by 
+    `npm install --save react-router-dom` 
+* firebase: this is installed by
+    `npm install firebase`
 
 This will satisfy any missing dependencies, once node has installed for this app you can start dev server via `npm start`
 
@@ -50,7 +55,7 @@ There are two sets of instructions on this page, this version was built via crea
 ## TODO: 
 * Rendering in checkout page
 * Data handling across pages
-* Database?
+* Database
 * Maps integration
 * Prepp for conversion to React-native
 
