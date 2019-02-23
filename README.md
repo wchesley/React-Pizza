@@ -2,41 +2,48 @@
 
 ## Deliverables: 
 
-Due date: Mar. 7th 2019
-
 ### Assignment 3
+
+Assignment 3 - Pizza Bandit Signup and Ordering
 
 You've followed along with me all semester so far with the Pizza Bandit program.  This assignment sees us completing that assignment for the ReactJS-only portion of the course.  You'll accomplish and complete the following:
 
 * Create a basic ReactJS app
 * Create a form that allows a user to sign up with an account
-  Email and password. Save this information to Firebase
+    email and password
+    save this information to Firebase
 * Create a form that allows a user to order a pizza
-* user must be signed in
-* use location services to get lat/lon
-* use a web service to get ZIP code from lat lon
-* select from three pizzas - cheese, pepperoni, and supreme
+    user must be signed in
+    use location services to get lat/lon
+    use a web service to get ZIP code from lat lon
+    select from three pizzas - cheese, pepperoni, and supreme
 * Order sourcing and order saving
 * Using ZIP code find nearby Pizza places - we'll use a real web service here
 * Confirmation and delivery screen
-* finalize delivery street address
-* show delivery street address on mapbox
-* You'll save the order to Firebase
-* You'll confirm the order via an email
-* This is a significant undertaking and the remainder of our class time between then and now will focus on these requirements.
+    finalize delivery street address
+    show delivery street address on mapbox
+    You'll save the order to Firebase
+    You'll confirm the order via an email
+
+This is a significant undertaking and the remainder of our class time between then and now will focus on these requirements.
 
 The first eight chapters of the Thomas book are instructive in getting this completed.
 
-Submitting your Work
+#### Submitting your Work
 
 You'll deliver this app via the following means:
 
-Github repository URL
-Zipped up and uploaded here
+* Github repository URL
+* Zipped up and uploaded here
 
 ## To run locally: 
 
-To run on your own machine clone this repository, then, in the root of this repo, run <br>`npm install`<br>After the initial install, there's one further dependency to satify, react-router-dom, this can be installed by <br>`npm install --save react-router-dom` 
+To run on your own machine clone this repository, then, in the root of this repo, run <br>`npm install`<br>After the initial install, there are a few other further dependencies to satify, 
+
+* react-router-dom: this can be installed by 
+    `npm install --save react-router-dom` 
+* firebase: this is installed by
+    `npm install firebase`
 
 This will satisfy any missing dependencies, once node has installed for this app you can start dev server via `npm start`
 
@@ -48,7 +55,7 @@ There are two sets of instructions on this page, this version was built via crea
 ## TODO: 
 * Rendering in checkout page
 * Data handling across pages
-* Database?
+* Database
 * Maps integration
 * Prepp for conversion to React-native
 
