@@ -14,7 +14,7 @@
 /build
 
 # misc
-process.env
+
 .DS_Store
 .env.local
 .env.development.local
@@ -26,3 +26,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .url
+process.env
+.env
