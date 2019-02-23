@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Errors } from './error';
+import FirebaseContext, { firebaseWrapper } from '../firebase';
 import { Link } from 'react-router-dom'
 import './index.css'
 
@@ -8,20 +9,25 @@ import './index.css'
  * save data to firebase
  * link page to order after registering
  * css styling
+ * testing
 ************************************/
+
+const INITIAL_STATE = {
+    email: '',
+    password: '',
+    verifyPass: '',
+    formErrors: { email: '', password: '' },
+    emailValid: false,
+    passwordValid: false,
+    formValid: false
+}
 
 class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
-            verifyPass: '',
-            formErrors: { email: '', password: '' },
-            emailValid: false,
-            passwordValid: false,
-            formValid: false
-        }
+            INITIAL_STATE
+        };
     }
 
     handleUserInput = (e) => {
@@ -69,16 +75,34 @@ class SignUp extends Component {
         return (error.length === 0 ? '' : 'has-error');
     }
 
-    register(){
-        if(this.state.formValid === true)
-        {
+    register() {
+        if (this.state.formValid === true) {
             //save data to firebase, send user to order pizza page
+            const { email, password } = this.state;
+            this.props.firebase
+                .doCreateUserWithEmailAndPassword(email, passwordOne)
+                .then(authUser => {
+                    this.setState({ ...INITIAL_STATE });
+                })
+                .catch(error => {
+                    this.setState({ error });
+                });
         }
+        event.preventDefault();
     }
 
     render() {
+        const {
+            email,
+            password,
+            verifyPass,
+            formErrors: { email, password },
+            emailValid,
+            passwordValid,
+            formValid,
+        } = this.state;
         return (
-            <form onSubmit={}>
+            <form onSubmit={register}>
                 <h2>Sign up - It's Piza Time!</h2>
                 <div className="container">
                     <Errors formErrors={this.state.formErrors} />
@@ -116,10 +140,12 @@ class SignUp extends Component {
                         value={this.state.verifyPass}
                         onChange={this.handleUserInput} />
                 </div>
-                <button type="submit" className="btn btn-primary" disabled={!this.state.formValid} onClick={}>Sign up</button>                
+                <button type="submit" className="btn btn-primary" disabled={!this.state.formValid} onClick={}>Sign up</button>
             </form>
         )
     }
 }
 
-export default SignUp
+const WrappedSignUp = firebaseWrapper(SignUp);
+
+export default WrappedSignUp;
