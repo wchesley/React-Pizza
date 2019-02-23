@@ -1,5 +1,7 @@
 # Assignment 1: React Pizza
 
+RE: https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/
+
 ## Deliverables: 
 
 ### Assignment 3
