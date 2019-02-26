@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Errors } from './error';
 import FirebaseContext, { firebaseWrapper } from '../firebase';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import './index.css'
 
 /************************************
@@ -83,6 +83,7 @@ class SignUp extends Component {
                 .doCreateUserWithEmailAndPassword(email, passwordOne)
                 .then(authUser => {
                     this.setState({ ...INITIAL_STATE });
+                    this.props.history.push(ROUTES.HOME);
                 })
                 .catch(error => {
                     this.setState({ error });
@@ -102,7 +103,7 @@ class SignUp extends Component {
             formValid,
         } = this.state;
         return (
-            <form onSubmit={register}>
+            <form onSubmit={this.state.register}>
                 <h2>Sign up - It's Piza Time!</h2>
                 <div className="container">
                     <Errors formErrors={this.state.formErrors} />
@@ -146,6 +147,6 @@ class SignUp extends Component {
     }
 }
 
-const WrappedSignUp = firebaseWrapper(SignUp);
+const WrappedSignUp = withRouter(firebaseWrapper(SignUp));
 
 export default WrappedSignUp;
