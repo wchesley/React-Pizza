@@ -75,15 +75,16 @@ class SignUp extends Component {
         return (error.length === 0 ? '' : 'has-error');
     }
 
-    register() {
+    register(event) {
         if (this.state.formValid === true) {
             //save data to firebase, send user to order pizza page
             const { email, password } = this.state;
             this.props.firebase
-                .doCreateUserWithEmailAndPassword(email, passwordOne)
+                .doCreateUserWithEmailAndPassword(email, password)
                 .then(authUser => {
                     this.setState({ ...INITIAL_STATE });
-                    this.props.history.push(ROUTES.HOME);
+                    //TODO: Push to order page
+                    //this.props.history.push(ROUTES.HOME);
                 })
                 .catch(error => {
                     this.setState({ error });
@@ -104,7 +105,7 @@ class SignUp extends Component {
         } = this.state;
         return (
             <form onSubmit={this.state.register}>
-                <h2>Sign up - It's Piza Time!</h2>
+                <h2>Sign up - It's Pizza Time!</h2>
                 <div className="container">
                     <Errors formErrors={this.state.formErrors} />
                 </div>
@@ -116,7 +117,7 @@ class SignUp extends Component {
                         required className="form-control"
                         name="email"
                         placeholder="Email"
-                        value={this.state.email}
+                        value={email}
                         onChange={this.handleUserInput} />
                 </div>
                 <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
@@ -127,7 +128,7 @@ class SignUp extends Component {
                         className="form-control"
                         name="password"
                         placeholder="Password"
-                        value={this.state.password}
+                        value={password}
                         onChange={this.handleUserInput} />
                 </div>
                 <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
@@ -138,10 +139,10 @@ class SignUp extends Component {
                         className="form-control"
                         name="verifyPassword"
                         placeholder="Re-enter Password"
-                        value={this.state.verifyPass}
+                        value={verifyPass}
                         onChange={this.handleUserInput} />
                 </div>
-                <button type="submit" className="btn btn-primary" disabled={!this.state.formValid} onClick={}>Sign up</button>
+                <button type="submit" className={'btn btn-primary'} disabled={!formValid} >Sign up</button>
             </form>
         )
     }

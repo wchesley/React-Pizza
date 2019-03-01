@@ -1,6 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom'
-import { Link } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -10,9 +8,9 @@ import Firebase, { FirebaseContext } from '../firebase';
 
 ReactDOM.render((
     <BrowserRouter>
-        <FirebaseContext.Provicer value={new Firebase()}>
+        <FirebaseContext.Provider value={new Firebase()}>
             <App />
-        </FirebaseContext.Provicer>
+        </FirebaseContext.Provider>
     </BrowserRouter>),
     document.getElementById('root')
 );

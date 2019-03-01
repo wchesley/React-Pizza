@@ -14,7 +14,7 @@ class Firebase {
         app.initializeApp(config);
         this.auth = app.auth();
     }
-}
+
 
 createUser = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
@@ -24,9 +24,9 @@ signIn = (email, password) =>
 
 signOut = () => this.auth.signOut();
 
-PasswordReset = email => this.auth.sendPasswordRestEmail(email);
+passwordReset = email => this.auth.sendPasswordRestEmail(email);
 
 passwordUpdate = password =>
     this.auth.currentUser.updatePassword(password);
-
+}
 export default Firebase; 
