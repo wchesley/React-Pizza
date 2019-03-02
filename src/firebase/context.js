@@ -1,4 +1,4 @@
-import React from 'react.js';
+import React from 'react';
 
 const FirebaseContext = React.createContext(null);
 
@@ -10,4 +10,4 @@ export const firebaseWrapper = Component => props => (
     </FirebaseContext.Consumer>
 );
 
-export { FirebaseContext }; 
+export default { FirebaseContext }; 

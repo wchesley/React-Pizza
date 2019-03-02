@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Errors } from './error';
-import FirebaseContext, { firebaseWrapper } from '../firebase';
+import { FirebaseContext, firebaseWrapper } from './firebase/context';
 import { Link, withRouter } from 'react-router-dom'
 import './index.css'
+import Button from './button'
 
 /************************************
  * TODO: 
@@ -50,10 +51,8 @@ class SignUp extends Component {
                 fieldValidationErrors.email = emailValid ? '' : ' is invalid';
                 break;
             case 'password':
-                passwordValid = value.length >= 8;
-                passwordValid = value.match(/^(?=.*[A-Z])/i);//verify if a capital letter present
-                passwordValid = value.match(/^(?=.*[0-9])/i);//verify if a number is present
-                passwordValid === verifyPass;
+                passwordValid = value.length >= 8 && value.match(/^(?=.*[0-9])/i) && value.match(/^(?=.*[A-Z])/i);
+                passwordValid = true ? passwordValid.value : verifyPass.value;
                 fieldValidationErrors.password = passwordValid ? '' : ' is invalid, must contain 8 letters, 1 capital letter and 1 number. Both password must match exactly.';
                 break;
             default:
@@ -98,18 +97,21 @@ class SignUp extends Component {
             email,
             password,
             verifyPass,
-            formErrors: { email, password },
+            formErrors: { Email, Password },
             emailValid,
             passwordValid,
             formValid,
         } = this.state;
+        const btnParent = (props) => {
+            const btnStyle = 'btn btn-primary';
+            const disabled = !formValid;
+        }
         return (
             <form onSubmit={this.state.register}>
-                <h2>Sign up - It's Pizza Time!</h2>
                 <div className="container">
                     <Errors formErrors={this.state.formErrors} />
                 </div>
-                <div className={`form-group ${this.errorClass(this.state.formErrors.email)}`}>
+                <div className={`form-group ${this.errorClass(this.state.formErrors.Email)}`}>
                     <label htmlFor="email">Email address</label>
                     <input
                         type="email"
@@ -120,7 +122,7 @@ class SignUp extends Component {
                         value={email}
                         onChange={this.handleUserInput} />
                 </div>
-                <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
+                <div className={`form-group ${this.errorClass(this.state.formErrors.Password)}`}>
                     <label htmlFor="password">Password</label>
                     <input
                         type="password"
@@ -131,7 +133,7 @@ class SignUp extends Component {
                         value={password}
                         onChange={this.handleUserInput} />
                 </div>
-                <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
+                <div className={`form-group ${this.errorClass(this.state.formErrors.Password)}`}>
                     <label htmlFor="password">Re-enter Password</label>
                     <input
                         type="password"
@@ -143,6 +145,7 @@ class SignUp extends Component {
                         onChange={this.handleUserInput} />
                 </div>
                 <button type="submit" className={'btn btn-primary'} disabled={!formValid} >Sign up</button>
+                <Button className={btnParent.btnStyle} disabled={btnParent.disabled}></Button>
             </form>
         )
     }
