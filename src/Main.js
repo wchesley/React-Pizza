@@ -1,9 +1,9 @@
 import React from 'react'
 import './index.css'
 import { Switch, Route } from 'react-router-dom'
-import Home from './Home'
+import Order from './order'
 import SignUp from './sign_up'
-import OrderPizza from './order'
+import OrderPizza from './confirmOrder'
 import CheckOut from './checkout'
 import { FirebaseContext, firebaseWrapper } from './firebase/context';
 
@@ -13,10 +13,10 @@ class Main extends React.Component {
     return(
         <main>
             <Switch>
-                <Route exact path='/' component={Home}/>
-                <Route path='/sign_up' component={SignUp} />
+                <Route exact path='/' component={SignUp}/>
+                <Route path='/order' component={Order} />
                 <Route path='/checkout' Component={CheckOut} />
-                <Route path='/order' component={OrderPizza} />
+                <Route path='/confirm_order' component={OrderPizza} />
             </Switch>
         </main>
     );

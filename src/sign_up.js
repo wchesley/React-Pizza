@@ -3,7 +3,7 @@ import { Errors } from './error';
 import { FirebaseContext, firebaseWrapper } from './firebase/context';
 import { Link, withRouter } from 'react-router-dom'
 import './index.css'
-import Button from './button'
+import Input from './components/input'
 
 /************************************
  * TODO: 
@@ -13,21 +13,30 @@ import Button from './button'
  * testing
 ************************************/
 
+/*
 const INITIAL_STATE = {
     email: '',
     password: '',
     verifyPass: '',
-    formErrors: { email: '', password: '' },
+    formErrors: { formEmail: '', formPassword: '' },
     emailValid: false,
     passwordValid: false,
     formValid: false
 }
+*/
 
 class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            INITIAL_STATE
+            //INITIAL_STATE
+            email: '',
+            password: '',
+            verifyPass: '',
+            formErrors: { formEmail: '', formPassword: '' },
+            emailValid: false,
+            passwordValid: false,
+            formValid: false
         };
     }
 
@@ -73,7 +82,7 @@ class SignUp extends Component {
     errorClass(error) {
         return (error.length === 0 ? '' : 'has-error');
     }
-
+/*
     register(event) {
         if (this.state.formValid === true) {
             //save data to firebase, send user to order pizza page
@@ -91,24 +100,33 @@ class SignUp extends Component {
         }
         event.preventDefault();
     }
+    */
 
-    render() {
-        const {
+    /*
+    STORE FOR LATER: 
+     const {
             email,
             password,
             verifyPass,
             formValid,
+            formErrors: { formEmail, formPassword },
+            emailValid,
+            passwordValid
         } = this.state;
         const btnParent = (props) => {
             const btnStyle = 'btn btn-primary';
             const disabled = !formValid;
         }
+    */
+    render() {
+       
+        //TODO: tie form to Register function
         return (
-            <form onSubmit={this.state.register}>
+            <form>
                 <div className="container">
                     <Errors formErrors={this.state.formErrors} />
                 </div>
-                <div className={`form-group ${this.errorClass(this.state.formErrors.email)}`}>
+                <div className={`form-group m-2 ${this.errorClass(this.state.formErrors.formEmail)}`}>
                     <label htmlFor="email">Email address</label>
                     <input
                         type="email"
@@ -116,10 +134,11 @@ class SignUp extends Component {
                         required className="form-control"
                         name="email"
                         placeholder="Email"
-                        value={email}
+                        value={this.state.email}
                         onChange={this.handleUserInput} />
+                   
                 </div>
-                <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
+                <div className={`form-group m-2 ${this.errorClass(this.state.formErrors.formPassword)}`}>
                     <label htmlFor="password">Password</label>
                     <input
                         type="password"
@@ -127,10 +146,11 @@ class SignUp extends Component {
                         className="form-control"
                         name="password"
                         placeholder="Password"
-                        value={password}
-                        onChange={this.handleUserInput} />
+                        value={this.state.password}
+                        onChange={this.handleUserInput} >
+                        </input>
                 </div>
-                <div className={`form-group ${this.errorClass(this.state.formErrors.Password)}`}>
+                <div className={`form-group m-2 ${this.errorClass(this.state.formErrors.formPassword)}`}>
                     <label htmlFor="password">Re-enter Password</label>
                     <input
                         type="password"
@@ -138,11 +158,10 @@ class SignUp extends Component {
                         className="form-control"
                         name="verifyPassword"
                         placeholder="Re-enter Password"
-                        value={verifyPass}
+                        value={this.state.verifyPass}
                         onChange={this.handleUserInput} />
                 </div>
-                <button type="submit" className={'btn btn-primary'} disabled={!formValid} >Sign up</button>
-                <Button className={btnParent.btnStyle} disabled={btnParent.disabled}></Button>
+                <button type="submit" className={'btn btn-primary'} disabled={!this.state.formValid} >Sign up</button>
             </form>
         )
     }
