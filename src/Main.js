@@ -5,6 +5,8 @@ import Home from './Home'
 import SignUp from './sign_up'
 import OrderPizza from './order'
 import CheckOut from './checkout'
+import { FirebaseContext, firebaseWrapper } from './firebase/context';
+
 
 class Main extends React.Component {
     render() {
@@ -20,5 +22,7 @@ class Main extends React.Component {
     );
     }
 }
+
+//const wrappedMain = firebaseWrapper(Main);
 
 export default Main; 

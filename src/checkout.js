@@ -22,7 +22,10 @@ class Input extends Component {
         return (
             <div className="mb-3">
                 <label for={this.props.type}>{this.props.type}</label>
-                <input type={Text} className="form-control" id={this.props.type}></input>
+                <input type={Text} 
+                className="form-control" 
+                id={this.props.type}>
+                </input>
             </div>
         );
     }

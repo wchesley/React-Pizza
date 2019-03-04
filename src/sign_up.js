@@ -1,27 +1,34 @@
 import React, { Component } from 'react'
 import { Errors } from './error';
-import { Link } from 'react-router-dom'
+import { FirebaseContext, firebaseWrapper } from './firebase/context';
+import { Link, withRouter } from 'react-router-dom'
 import './index.css'
+import Button from './button'
 
 /************************************
  * TODO: 
  * save data to firebase
  * link page to order after registering
  * css styling
+ * testing
 ************************************/
+
+const INITIAL_STATE = {
+    email: '',
+    password: '',
+    verifyPass: '',
+    formErrors: { email: '', password: '' },
+    emailValid: false,
+    passwordValid: false,
+    formValid: false
+}
 
 class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
-            verifyPass: '',
-            formErrors: { email: '', password: '' },
-            emailValid: false,
-            passwordValid: false,
-            formValid: false
-        }
+            INITIAL_STATE
+        };
     }
 
     handleUserInput = (e) => {
@@ -44,10 +51,8 @@ class SignUp extends Component {
                 fieldValidationErrors.email = emailValid ? '' : ' is invalid';
                 break;
             case 'password':
-                passwordValid = value.length >= 8;
-                passwordValid = value.match(/^(?=.*[A-Z])/i);//verify if a capital letter present
-                passwordValid = value.match(/^(?=.*[0-9])/i);//verify if a number is present
-                passwordValid === verifyPass;
+                passwordValid = value.length >= 8 && value.match(/^(?=.*[0-9])/i) && value.match(/^(?=.*[A-Z])/i);
+                passwordValid = true ? passwordValid.value : verifyPass.value;
                 fieldValidationErrors.password = passwordValid ? '' : ' is invalid, must contain 8 letters, 1 capital letter and 1 number. Both password must match exactly.';
                 break;
             default:
@@ -69,17 +74,37 @@ class SignUp extends Component {
         return (error.length === 0 ? '' : 'has-error');
     }
 
-    register(){
-        if(this.state.formValid === true)
-        {
+    register(event) {
+        if (this.state.formValid === true) {
             //save data to firebase, send user to order pizza page
+            const { email, password } = this.state;
+            this.props.firebase
+                .doCreateUserWithEmailAndPassword(email, password)
+                .then(authUser => {
+                    this.setState({ ...INITIAL_STATE });
+                    //TODO: Push to order page
+                    //this.props.history.push(ROUTES.HOME);
+                })
+                .catch(error => {
+                    this.setState({ error });
+                });
         }
+        event.preventDefault();
     }
 
     render() {
+        const {
+            email,
+            password,
+            verifyPass,
+            formValid,
+        } = this.state;
+        const btnParent = (props) => {
+            const btnStyle = 'btn btn-primary';
+            const disabled = !formValid;
+        }
         return (
-            <form onSubmit={}>
-                <h2>Sign up - It's Piza Time!</h2>
+            <form onSubmit={this.state.register}>
                 <div className="container">
                     <Errors formErrors={this.state.formErrors} />
                 </div>
@@ -91,7 +116,7 @@ class SignUp extends Component {
                         required className="form-control"
                         name="email"
                         placeholder="Email"
-                        value={this.state.email}
+                        value={email}
                         onChange={this.handleUserInput} />
                 </div>
                 <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
@@ -102,10 +127,10 @@ class SignUp extends Component {
                         className="form-control"
                         name="password"
                         placeholder="Password"
-                        value={this.state.password}
+                        value={password}
                         onChange={this.handleUserInput} />
                 </div>
-                <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
+                <div className={`form-group ${this.errorClass(this.state.formErrors.Password)}`}>
                     <label htmlFor="password">Re-enter Password</label>
                     <input
                         type="password"
@@ -113,13 +138,16 @@ class SignUp extends Component {
                         className="form-control"
                         name="verifyPassword"
                         placeholder="Re-enter Password"
-                        value={this.state.verifyPass}
+                        value={verifyPass}
                         onChange={this.handleUserInput} />
                 </div>
-                <button type="submit" className="btn btn-primary" disabled={!this.state.formValid} onClick={}>Sign up</button>                
+                <button type="submit" className={'btn btn-primary'} disabled={!formValid} >Sign up</button>
+                <Button className={btnParent.btnStyle} disabled={btnParent.disabled}></Button>
             </form>
         )
     }
 }
 
-export default SignUp
+//const WrappedSignUp = withRouter(firebaseWrapper(SignUp));
+
+export default SignUp;
