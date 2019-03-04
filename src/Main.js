@@ -5,13 +5,15 @@ import Home from './Home'
 import SignUp from './sign_up'
 import OrderPizza from './order'
 import CheckOut from './checkout'
+import { FirebaseContext, firebaseWrapper } from './firebase/context';
+
 
 class Main extends React.Component {
     render() {
     return(
         <main>
             <Switch>
-                <Route exact path='/' component={SignUp}/>
+                <Route exact path='/' component={Home}/>
                 <Route path='/sign_up' component={SignUp} />
                 <Route path='/checkout' Component={CheckOut} />
                 <Route path='/order' component={OrderPizza} />
@@ -20,5 +22,7 @@ class Main extends React.Component {
     );
     }
 }
+
+//const wrappedMain = firebaseWrapper(Main);
 
 export default Main; 

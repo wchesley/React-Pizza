@@ -12,6 +12,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './index.css'
 import Main from './Main'
+import { FirebaseContext, firebaseWrapper } from './firebase/context';
 
 class App extends Component {
   render() {
@@ -50,5 +51,7 @@ class NavBar extends React.Component {
     );
   }
 }
+
+//const wrappedApp = firebaseWrapper(App);
 
 export default App;

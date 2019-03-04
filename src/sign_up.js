@@ -97,9 +97,6 @@ class SignUp extends Component {
             email,
             password,
             verifyPass,
-            formErrors: { Email, Password },
-            emailValid,
-            passwordValid,
             formValid,
         } = this.state;
         const btnParent = (props) => {
@@ -111,7 +108,7 @@ class SignUp extends Component {
                 <div className="container">
                     <Errors formErrors={this.state.formErrors} />
                 </div>
-                <div className={`form-group ${this.errorClass(this.state.formErrors.Email)}`}>
+                <div className={`form-group ${this.errorClass(this.state.formErrors.email)}`}>
                     <label htmlFor="email">Email address</label>
                     <input
                         type="email"
@@ -122,7 +119,7 @@ class SignUp extends Component {
                         value={email}
                         onChange={this.handleUserInput} />
                 </div>
-                <div className={`form-group ${this.errorClass(this.state.formErrors.Password)}`}>
+                <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
                     <label htmlFor="password">Password</label>
                     <input
                         type="password"
@@ -151,6 +148,6 @@ class SignUp extends Component {
     }
 }
 
-const WrappedSignUp = withRouter(firebaseWrapper(SignUp));
+//const WrappedSignUp = withRouter(firebaseWrapper(SignUp));
 
-export default WrappedSignUp;
+export default SignUp;
