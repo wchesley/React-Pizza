@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './index.css'
+import Map from './components/map'
 
 //have to manually import images?
 import cheese from './img/cheese.png'
@@ -23,6 +24,7 @@ class Order extends Component {
                     <PizzaType pizza='supreme' provider="Giovani's" img={supreme}/>
                     </div>
                 </form>
+                <Map />
             </div>
         );
     }

@@ -32,7 +32,7 @@ class SignUp extends Component {
             //INITIAL_STATE
             email: '',
             password: '',
-            verifyPass: '',
+            //verifyPass: '',
             formErrors: { formEmail: '', formPassword: '' },
             emailValid: false,
             passwordValid: false,
@@ -51,7 +51,7 @@ class SignUp extends Component {
         let fieldValidationErrors = this.state.formErrors;
         let emailValid = this.state.emailValid;
         let passwordValid = this.state.passwordValid;
-        let verifyPass = this.state.verifyPass;
+        //let verifyPass = this.state.verifyPass;
 
         switch (fieldName) {
             case 'email':
@@ -61,7 +61,7 @@ class SignUp extends Component {
                 break;
             case 'password':
                 passwordValid = value.length >= 8 && value.match(/^(?=.*[0-9])/i) && value.match(/^(?=.*[A-Z])/i);
-                passwordValid = true ? passwordValid.value : verifyPass.value;
+                //passwordValid = true ? passwordValid.value : verifyPass.value;
                 fieldValidationErrors.password = passwordValid ? '' : ' is invalid, must contain 8 letters, 1 capital letter and 1 number. Both password must match exactly.';
                 break;
             default:
@@ -150,18 +150,9 @@ class SignUp extends Component {
                         onChange={this.handleUserInput} >
                         </input>
                 </div>
-                <div className={`form-group m-2 ${this.errorClass(this.state.formErrors.formPassword)}`}>
-                    <label htmlFor="password">Re-enter Password</label>
-                    <input
-                        type="password"
-                        id="verifyPass"
-                        className="form-control"
-                        name="verifyPassword"
-                        placeholder="Re-enter Password"
-                        value={this.state.verifyPass}
-                        onChange={this.handleUserInput} />
-                </div>
+                <Link to={'/order'}>
                 <button type="submit" className={'btn btn-primary'} disabled={!this.state.formValid} >Sign up</button>
+                </Link>
             </form>
         )
     }
