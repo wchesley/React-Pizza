@@ -27,4 +27,4 @@ yarn-error.log*
 
 .url
 /process.env
-.env
+/.env
