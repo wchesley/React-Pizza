@@ -7,21 +7,22 @@ import * as serviceWorker from './serviceWorker';
 import Firebase, { FirebaseContext } from './firebase';
 import { Provider } from 'react-redux'
 import store from './store/index'
-require('dotenv').config();
+//require('dotenv').config();
 ReactDOM.render((
     <Provider store={store}>
-       
+        <FirebaseContext.Provider value={new Firebase()}>
             <BrowserRouter>
                 <App />
             </BrowserRouter>
-
+        </FirebaseContext.Provider>
     </Provider>
 ),
     document.getElementById('root')
 );
 /*TODO:
     Implements <firebaseContext.Provider value={new Firebase()}><....
-    
+
+
 */
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

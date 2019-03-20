@@ -11,18 +11,18 @@ import { FirebaseContext, firebaseWrapper } from './firebase/context';
 class Main extends React.Component {
     render() {
     return(
-        <main>
+        <>
             <Switch>
                 <Route exact path='/' component={SignUp}/>
                 <Route path='/order' component={Order} />
                 <Route path='/checkout' Component={CheckOut} />
                 <Route path='/confirm_order' component={OrderPizza} />
             </Switch>
-        </main>
+        </>
     );
     }
 }
 
-//const wrappedMain = firebaseWrapper(Main);
+const wrappedMain = firebaseWrapper(Main);
 
-export default Main; 
+export default wrappedMain; 

@@ -3,7 +3,6 @@ import { Errors } from './error';
 import { FirebaseContext, firebaseWrapper } from './firebase/context';
 import { Link, withRouter } from 'react-router-dom'
 import './index.css'
-import Input from './components/input'
 
 /************************************
  * TODO: 
@@ -158,6 +157,6 @@ class SignUp extends Component {
     }
 }
 
-//const WrappedSignUp = withRouter(firebaseWrapper(SignUp));
+const wrappedSignUp = withRouter(firebaseWrapper(SignUp));
 
-export default SignUp;
+export default wrappedSignUp;

@@ -10,4 +10,4 @@ export const firebaseWrapper = Component => props => (
     </FirebaseContext.Consumer>
 );
 
-export default { FirebaseContext }; 
+export default FirebaseContext; 

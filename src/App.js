@@ -52,6 +52,16 @@ class NavBar extends React.Component {
   }
 }
 
-//const wrappedApp = firebaseWrapper(App);
+const wrappedApp = firebaseWrapper(App);
 
 export default App;
+
+/*
+feature list: 
+Logged in
+  -track state of logged in logged out
+  --Actually log in/log out
+  -Can't order, can't look at history if not logged in. 
+  -loading places from here.com
+  -
+*/
