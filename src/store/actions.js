@@ -1,5 +1,7 @@
 //Action Types: 
-export const LOGGED_IN = "LOGGED_IN"
+export const AUTH = { 
+    LOGIN_SUCCESS: "LOGGED_IN"
+};
 export const LOCATION= "LOCATION"
 export const user
 

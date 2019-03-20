@@ -22,7 +22,7 @@ class App extends Component {
         <Header />
         <div className="row justify-content-center">
           <div className="col-6 main_div">
-          <Main />
+            <Main />
           </div>
         </div>
       </div >

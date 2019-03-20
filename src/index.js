@@ -6,14 +6,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Firebase, { FirebaseContext } from './firebase';
 import { Provider } from 'react-redux'
+import store from './store/index'
 require('dotenv').config();
 ReactDOM.render((
     <Provider store={store}>
-        <FirebaseContext.Provider value={new firebase()}>
+       
             <BrowserRouter>
                 <App />
             </BrowserRouter>
-        </FirebaseContext.Provider>
+
     </Provider>
 ),
     document.getElementById('root')

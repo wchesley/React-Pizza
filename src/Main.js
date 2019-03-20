@@ -13,8 +13,8 @@ class Main extends React.Component {
     return(
         <main>
             <Switch>
-                <Route exact path='/' component={Order}/>
-                <Route path='/order' component={SignUp} />
+                <Route exact path='/' component={SignUp}/>
+                <Route path='/order' component={Order} />
                 <Route path='/checkout' Component={CheckOut} />
                 <Route path='/confirm_order' component={OrderPizza} />
             </Switch>
