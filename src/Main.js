@@ -3,7 +3,7 @@ import './index.css'
 import { Switch, Route } from 'react-router-dom'
 import Order from './order'
 import SignUp from './sign_up'
-import OrderPizza from './confirmOrder'
+import OrderPizza from './components/confirmOrder'
 import CheckOut from './checkout'
 import { FirebaseContext, firebaseWrapper } from './firebase/context';
 
