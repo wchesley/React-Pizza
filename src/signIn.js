@@ -85,7 +85,7 @@ class SignIn extends Component {
             //save data to firebase, send user to order pizza page
             const { email, password } = this.state;
             this.props.firebase
-                .dosignInWithEmailAndPassword(email, password)
+                .signIn(email, password)
                 .then(() => {
                     this.setState({ ...INITIAL_STATE });
                     //TODO: Push to order page
