@@ -12,30 +12,29 @@ import './index.css'
  * testing
 ************************************/
 
-/*
+
 const INITIAL_STATE = {
     email: '',
     password: '',
-    verifyPass: '',
     formErrors: { formEmail: '', formPassword: '' },
     emailValid: false,
     passwordValid: false,
     formValid: false
 }
-*/
+
 
 class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            //INITIAL_STATE
-            email: '',
-            password: '',
+            INITIAL_STATE
+            //email: '',
+            //password: '',
             //verifyPass: '',
-            formErrors: { formEmail: '', formPassword: '' },
-            emailValid: false,
-            passwordValid: false,
-            formValid: false
+            //formErrors: { formEmail: '', formPassword: '' },
+            //emailValid: false,
+            //passwordValid: false,
+            //formValid: false
         };
     }
 
@@ -81,7 +80,7 @@ class SignUp extends Component {
     errorClass(error) {
         return (error.length === 0 ? '' : 'has-error');
     }
-/*
+
     register(event) {
         if (this.state.formValid === true) {
             //save data to firebase, send user to order pizza page
@@ -99,7 +98,7 @@ class SignUp extends Component {
         }
         event.preventDefault();
     }
-    */
+    
 
     /*
     STORE FOR LATER: 
@@ -121,7 +120,7 @@ class SignUp extends Component {
        
         //TODO: tie form to Register function
         return (
-            <form>
+            <form onSubmit={this.register}>
                 <div className="container">
                     <Errors formErrors={this.state.formErrors} />
                 </div>

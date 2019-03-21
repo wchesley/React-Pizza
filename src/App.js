@@ -12,6 +12,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './index.css'
 import Main from './Main'
+import Header from './components/header'
+import NavBar from './components/navBar'
 import { FirebaseContext, firebaseWrapper } from './firebase/context';
 
 class App extends Component {
@@ -30,27 +32,6 @@ class App extends Component {
   }
 }
 
-class Header extends Component {
-  render() {
-    return (
-      <div className="banner jumbotron text-center">
-        <h1>It's Pizzza Time!</h1>
-        <p className="sub_banner">Find the lowest price pizza near you!</p>
-      </div>
-    );
-  }
-}
-
-class NavBar extends React.Component {
-  render() {
-    return (
-      <ul>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/sign_up'>Login or Sign up</Link></li>
-      </ul>
-    );
-  }
-}
 
 const wrappedApp = firebaseWrapper(App);
 
