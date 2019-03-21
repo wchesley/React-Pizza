@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Errors } from './error';
-import { FirebaseContext, firebaseWrapper } from './firebase/context';
+import { firebaseWrapper } from './firebase/context';
 import { Link, withRouter } from 'react-router-dom'
 import './index.css'
 
@@ -19,7 +19,7 @@ const INITIAL_STATE = {
     formErrors: { formEmail: '', formPassword: '' },
     emailValid: false,
     passwordValid: false,
-    formValid: false
+    formValid: false 
 }
 
 
@@ -27,7 +27,7 @@ class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            INITIAL_STATE
+            ...INITIAL_STATE
             //email: '',
             //password: '',
             //verifyPass: '',
@@ -60,7 +60,7 @@ class SignUp extends Component {
             case 'password':
                 passwordValid = value.length >= 8 && value.match(/^(?=.*[0-9])/i) && value.match(/^(?=.*[A-Z])/i);
                 //passwordValid = true ? passwordValid.value : verifyPass.value;
-                fieldValidationErrors.password = passwordValid ? '' : ' is invalid, must contain 8 letters, 1 capital letter and 1 number. Both password must match exactly.';
+                fieldValidationErrors.password = passwordValid ? '' : ' is invalid, must contain 8 letters, 1 capital letter and 1 number.';
                 break;
             default:
                 break;
@@ -81,46 +81,33 @@ class SignUp extends Component {
         return (error.length === 0 ? '' : 'has-error');
     }
 
-    register(event) {
-        if (this.state.formValid === true) {
+    SignIn= event => {
             //save data to firebase, send user to order pizza page
             const { email, password } = this.state;
             this.props.firebase
-                .doCreateUserWithEmailAndPassword(email, password)
-                .then(authUser => {
+                .dosignInWithEmailAndPassword(email, password)
+                .then(() => {
                     this.setState({ ...INITIAL_STATE });
                     //TODO: Push to order page
-                    //this.props.history.push(ROUTES.HOME);
+                    this.props.history.push('/order');
                 })
                 .catch(error => {
-                    this.setState({ error });
+                       console.log(error)
                 });
-        }
+               
+        
         event.preventDefault();
     }
-    
 
-    /*
-    STORE FOR LATER: 
-     const {
+    render() {
+        const {
             email,
             password,
-            verifyPass,
-            formValid,
-            formErrors: { formEmail, formPassword },
-            emailValid,
-            passwordValid
+            formValid
         } = this.state;
-        const btnParent = (props) => {
-            const btnStyle = 'btn btn-primary';
-            const disabled = !formValid;
-        }
-    */
-    render() {
-       
-        //TODO: tie form to Register function
+
         return (
-            <form onSubmit={this.register}>
+            <form onSubmit={this.SignIn}>
                 <div className="container">
                     <Errors formErrors={this.state.formErrors} />
                 </div>
@@ -132,9 +119,9 @@ class SignUp extends Component {
                         required className="form-control"
                         name="email"
                         placeholder="Email"
-                        value={this.state.email}
+                        value={email}
                         onChange={this.handleUserInput} />
-                   
+
                 </div>
                 <div className={`form-group m-2 ${this.errorClass(this.state.formErrors.formPassword)}`}>
                     <label htmlFor="password">Password</label>
@@ -144,13 +131,11 @@ class SignUp extends Component {
                         className="form-control"
                         name="password"
                         placeholder="Password"
-                        value={this.state.password}
+                        value={password}
                         onChange={this.handleUserInput} >
-                        </input>
+                    </input>
                 </div>
-                <Link to={'/order'}>
-                <button type="submit" className={'btn btn-primary'} disabled={!this.state.formValid} >Sign up</button>
-                </Link>
+                <button type="submit" className={'btn btn-primary'} disabled={!formValid}>Sign up</button>
             </form>
         )
     }
