@@ -23,7 +23,7 @@ const INITIAL_STATE = {
 }
 
 
-class SignUp extends Component {
+class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -81,7 +81,7 @@ class SignUp extends Component {
         return (error.length === 0 ? '' : 'has-error');
     }
 
-    SignIn= event => {
+    FirebaseSignIn= event => {
             //save data to firebase, send user to order pizza page
             const { email, password } = this.state;
             this.props.firebase
@@ -107,7 +107,7 @@ class SignUp extends Component {
         } = this.state;
 
         return (
-            <form onSubmit={this.SignIn}>
+            <form onSubmit={this.FirebaseSignIn}>
                 <div className="container">
                     <Errors formErrors={this.state.formErrors} />
                 </div>
@@ -141,6 +141,6 @@ class SignUp extends Component {
     }
 }
 
-const wrappedSignUp = withRouter(firebaseWrapper(SignUp));
+const wrappedSignUp = withRouter(firebaseWrapper(SignIn));
 
 export default wrappedSignUp;
