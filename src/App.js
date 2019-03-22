@@ -35,7 +35,7 @@ class App extends Component {
 
 const wrappedApp = firebaseWrapper(withAuthentication(App));
 
-export default App;
+export default wrappedApp;
 
 /*
 feature list: 

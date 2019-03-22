@@ -5,6 +5,7 @@ import Order from './order'
 import SignIn from './signIn'
 import OrderPizza from './components/confirmOrder'
 import CheckOut from './checkout'
+import * as ROUTES from './constants/routes'
 import { FirebaseContext, firebaseWrapper } from './firebase/context';
 import withAuthentication from './session/context'
 
@@ -13,10 +14,10 @@ class Main extends React.Component {
     return(
         <>
             <Switch>
-                <Route exact path='/' component={SignIn}/>
-                <Route path='/order' component={Order} />
-                <Route path='/checkout' Component={CheckOut} />
-                <Route path='/confirm_order' component={OrderPizza} />
+                <Route exact path={ROUTES.SIGN_IN} component={SignIn}/>
+                <Route exact path={ROUTES.ORDER} component={Order} />
+                <Route exact path={ROUTES.CHECKOUT} Component={CheckOut} />
+                <Route exact path={ROUTES.CONFIRM_ORDER} component={OrderPizza} />
             </Switch>
         </>
     );
