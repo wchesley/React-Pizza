@@ -6,7 +6,7 @@ import SignIn from './signIn'
 import OrderPizza from './components/confirmOrder'
 import CheckOut from './checkout'
 import { FirebaseContext, firebaseWrapper } from './firebase/context';
-
+import withAuthentication from './session/context'
 
 class Main extends React.Component {
     render() {

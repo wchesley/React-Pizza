@@ -15,7 +15,7 @@ import Main from './Main'
 import Header from './components/header'
 import NavBar from './components/navBar'
 import { FirebaseContext, firebaseWrapper } from './firebase/context';
-
+import withAuthentication from './session/authenticated'
 class App extends Component {
   render() {
     return (
@@ -33,7 +33,7 @@ class App extends Component {
 }
 
 
-const wrappedApp = firebaseWrapper(App);
+const wrappedApp = firebaseWrapper(withAuthentication(App));
 
 export default App;
 
