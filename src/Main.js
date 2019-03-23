@@ -1,28 +1,29 @@
 import React from 'react'
 import './index.css'
 import { Switch, Route } from 'react-router-dom'
-import Home from './Home'
-import SignUp from './sign_up'
-import OrderPizza from './order'
+import Order from './order'
+import SignIn from './signIn'
+import OrderPizza from './components/confirmOrder'
 import CheckOut from './checkout'
+import * as ROUTES from './constants/routes'
 import { FirebaseContext, firebaseWrapper } from './firebase/context';
-
+import withAuthentication from './session/context'
 
 class Main extends React.Component {
     render() {
     return(
-        <main>
+        <>
             <Switch>
-                <Route exact path='/' component={Home}/>
-                <Route path='/sign_up' component={SignUp} />
-                <Route path='/checkout' Component={CheckOut} />
-                <Route path='/order' component={OrderPizza} />
+                <Route exact path={ROUTES.SIGN_IN} component={SignIn}/>
+                <Route exact path={ROUTES.ORDER} component={Order} />
+                <Route exact path={ROUTES.CHECKOUT} Component={CheckOut} />
+                <Route exact path={ROUTES.CONFIRM_ORDER} component={OrderPizza} />
             </Switch>
-        </main>
+        </>
     );
     }
 }
 
-//const wrappedMain = firebaseWrapper(Main);
+const wrappedMain = firebaseWrapper(Main);
 
-export default Main; 
+export default wrappedMain; 

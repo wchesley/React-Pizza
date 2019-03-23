@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Errors } from './error';
-import { FirebaseContext, firebaseWrapper } from './firebase/context';
+import { firebaseWrapper } from './firebase/context';
 import { Link, withRouter } from 'react-router-dom'
 import './index.css'
-import Button from './button'
 
 /************************************
  * TODO: 
@@ -13,21 +12,29 @@ import Button from './button'
  * testing
 ************************************/
 
+
 const INITIAL_STATE = {
     email: '',
     password: '',
-    verifyPass: '',
-    formErrors: { email: '', password: '' },
+    formErrors: { formEmail: '', formPassword: '' },
     emailValid: false,
     passwordValid: false,
-    formValid: false
+    formValid: false 
 }
 
-class SignUp extends Component {
+
+class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            INITIAL_STATE
+            ...INITIAL_STATE
+            //email: '',
+            //password: '',
+            //verifyPass: '',
+            //formErrors: { formEmail: '', formPassword: '' },
+            //emailValid: false,
+            //passwordValid: false,
+            //formValid: false
         };
     }
 
@@ -42,7 +49,7 @@ class SignUp extends Component {
         let fieldValidationErrors = this.state.formErrors;
         let emailValid = this.state.emailValid;
         let passwordValid = this.state.passwordValid;
-        let verifyPass = this.state.verifyPass;
+        //let verifyPass = this.state.verifyPass;
 
         switch (fieldName) {
             case 'email':
@@ -52,8 +59,8 @@ class SignUp extends Component {
                 break;
             case 'password':
                 passwordValid = value.length >= 8 && value.match(/^(?=.*[0-9])/i) && value.match(/^(?=.*[A-Z])/i);
-                passwordValid = true ? passwordValid.value : verifyPass.value;
-                fieldValidationErrors.password = passwordValid ? '' : ' is invalid, must contain 8 letters, 1 capital letter and 1 number. Both password must match exactly.';
+                //passwordValid = true ? passwordValid.value : verifyPass.value;
+                fieldValidationErrors.password = passwordValid ? '' : ' is invalid, must contain 8 letters, 1 capital letter and 1 number.';
                 break;
             default:
                 break;
@@ -74,21 +81,21 @@ class SignUp extends Component {
         return (error.length === 0 ? '' : 'has-error');
     }
 
-    register(event) {
-        if (this.state.formValid === true) {
+    FirebaseSignIn= event => {
             //save data to firebase, send user to order pizza page
             const { email, password } = this.state;
             this.props.firebase
-                .doCreateUserWithEmailAndPassword(email, password)
-                .then(authUser => {
+                .signIn(email, password)
+                .then(() => {
                     this.setState({ ...INITIAL_STATE });
                     //TODO: Push to order page
-                    //this.props.history.push(ROUTES.HOME);
+                    this.props.history.push('/order');
                 })
                 .catch(error => {
-                    this.setState({ error });
+                       console.log(error)
                 });
-        }
+               
+        
         event.preventDefault();
     }
 
@@ -96,19 +103,15 @@ class SignUp extends Component {
         const {
             email,
             password,
-            verifyPass,
-            formValid,
+            formValid
         } = this.state;
-        const btnParent = (props) => {
-            const btnStyle = 'btn btn-primary';
-            const disabled = !formValid;
-        }
+
         return (
-            <form onSubmit={this.state.register}>
+            <form onSubmit={this.FirebaseSignIn}>
                 <div className="container">
                     <Errors formErrors={this.state.formErrors} />
                 </div>
-                <div className={`form-group ${this.errorClass(this.state.formErrors.email)}`}>
+                <div className={`form-group m-2 ${this.errorClass(this.state.formErrors.formEmail)}`}>
                     <label htmlFor="email">Email address</label>
                     <input
                         type="email"
@@ -118,8 +121,9 @@ class SignUp extends Component {
                         placeholder="Email"
                         value={email}
                         onChange={this.handleUserInput} />
+
                 </div>
-                <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
+                <div className={`form-group m-2 ${this.errorClass(this.state.formErrors.formPassword)}`}>
                     <label htmlFor="password">Password</label>
                     <input
                         type="password"
@@ -128,26 +132,15 @@ class SignUp extends Component {
                         name="password"
                         placeholder="Password"
                         value={password}
-                        onChange={this.handleUserInput} />
+                        onChange={this.handleUserInput} >
+                    </input>
                 </div>
-                <div className={`form-group ${this.errorClass(this.state.formErrors.Password)}`}>
-                    <label htmlFor="password">Re-enter Password</label>
-                    <input
-                        type="password"
-                        id="verifyPass"
-                        className="form-control"
-                        name="verifyPassword"
-                        placeholder="Re-enter Password"
-                        value={verifyPass}
-                        onChange={this.handleUserInput} />
-                </div>
-                <button type="submit" className={'btn btn-primary'} disabled={!formValid} >Sign up</button>
-                <Button className={btnParent.btnStyle} disabled={btnParent.disabled}></Button>
+                <button type="submit" className={'btn btn-primary'} disabled={!formValid}>Sign up</button>
             </form>
         )
     }
 }
 
-//const WrappedSignUp = withRouter(firebaseWrapper(SignUp));
+const wrappedSignUp = withRouter(firebaseWrapper(SignIn));
 
-export default SignUp;
+export default wrappedSignUp;
