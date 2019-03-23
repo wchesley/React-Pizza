@@ -9,7 +9,7 @@ const NavBar = () =>
     <>
     <AuthUserContext.Consumer>
         {authUser =>
-        authUser ? <DefaultNavBar /> : <AuthorizedNavBar />
+        authUser ? <AuthorizedNavBar /> : <DefaultNavBar />
         }
         </AuthUserContext.Consumer>
     </>
