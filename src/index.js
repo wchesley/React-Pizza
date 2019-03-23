@@ -9,13 +9,12 @@ import { Provider } from 'react-redux'
 import store from './store/index'
 //require('dotenv').config();
 ReactDOM.render((
-    <Provider store={store}>
         <FirebaseContext.Provider value={new Firebase()}>
             <BrowserRouter>
                 <App />
             </BrowserRouter>
         </FirebaseContext.Provider>
-    </Provider>
+
 ),
     document.getElementById('root')
 );

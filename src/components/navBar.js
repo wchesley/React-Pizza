@@ -4,13 +4,16 @@ import * as ROUTES from '../constants/routes'
 import SignOutButton from './signOut'
 import AuthUserContext from '../session/context'
 
+
 const NavBar = () => 
     <>
     <AuthUserContext.Consumer>
         {authUser =>
-        authUser ? <AuthorizedNavBar /> : <DefaultNavBar />}
-    </AuthUserContext.Consumer>
+        authUser ? <DefaultNavBar /> : <AuthorizedNavBar />
+        }
+        </AuthUserContext.Consumer>
     </>
+
 
 
 const AuthorizedNavBar = () =>

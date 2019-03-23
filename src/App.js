@@ -15,34 +15,28 @@ import Main from './Main'
 import Header from './components/header'
 import NavBar from './components/navBar'
 import { FirebaseContext, firebaseWrapper } from './firebase/context';
-import withAuthentication from './session/authenticated'
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <NavBar />
-        <Header />
-        <div className="row justify-content-center">
-          <div className="col-6 main_div">
-            <Main />
-          </div>
-        </div>
-      </div >
-    );
-  }
-}
+import withAuthentication from './session/authenticated';
+
+const App = () =>
+  <div>
+    <NavBar />
+    <Header />
+    <div className="row justify-content-center">
+      <div className="col-6 main_div">
+        <Main />
+      </div>
+    </div>
+  </div >
 
 
-const wrappedApp = firebaseWrapper(withAuthentication(App));
-
-export default wrappedApp;
+export default withAuthentication(App);
 
 /*
-feature list: 
+feature list:
 Logged in
   -track state of logged in logged out
   --Actually log in/log out
-  -Can't order, can't look at history if not logged in. 
+  -Can't order, can't look at history if not logged in.
   -loading places from here.com
   -
 */
