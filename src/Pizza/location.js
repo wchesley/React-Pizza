@@ -1,5 +1,5 @@
 import React from 'react';
-import PizzaConsumer from './context'
+import PizzaContext from './context'
 import { firebaseWrapper } from '../firebase/context';
 
 const locationProvider = Component => {
@@ -9,33 +9,23 @@ const locationProvider = Component => {
             this.state = {
                 lat: 35.2220,
                 long: 101.8313,
-            }
-        }
-        componentWillMount() {
-            this.setLocation();
-        }
-        //
-        setLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(position => {
-                    this.setState(() => {
-                        return {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        }
-                    }
-                    );
-                });
-            } else {
-                console.log("Geolocation is not supported by this browser.");
+                updateLocation: updatedLocation =>
+                this.updateLocation(updatedLocation)
             }
         }
 
+        updateLocation = updatedLocation => {
+            this.setState(prevState => ({
+                ...prevState,
+                ...updatedLocation
+            }))
+        }        
+
         render() {
             return (
-                <PizzaConsumer.Provider value ={this.state}>
-                    <Component {...this.props} />
-                </PizzaConsumer.Provider>
+                <PizzaContext.Provider value ={this.state}>
+                   <Component  />
+                </PizzaContext.Provider>
             )
         }
 

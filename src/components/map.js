@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
-import PizzaContext from '../Pizza'
-import Pizza from '../Pizza';
+import PizzaContext from '../Pizza/context'
+
 /*************
  * TODO: 
  * Fix styling
@@ -14,13 +14,31 @@ const Map = ReactMapboxGl({
 class Mapbox extends Component {
 
   state = {
-    //lng: -98.5795,
-    //glat: 39.828175,
+    long: -98.5795,
+    lat: 39.828175,
     zoom: 2,
     mapstyle: 'dark',
   };
 
-  
+  componentWillMount() {
+    this.setLocation();
+  }
+  //
+  setLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.setState(() => {
+          return {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }
+        }
+        );
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
 
   getPizzaPlacesFromHereAPI() {
     const here_api_url = "https://places.cit.api.here.com/places/v1/autosuggest?";
@@ -78,15 +96,13 @@ class Mapbox extends Component {
   }
 
   render() {
-    //const { lng, lat, zoom, mapstyle } = this.state;
+    //const { long, lat, zoom, mapstyle } = this.state;
 
     return (
-      <PizzaContext.Consumer>
-        {({lat, long }) => (
       <div className="container">
-        <div>{`Longitude: ${long} Latitude: ${lat} Zoom: ${this.state.zoom}`}</div>
+        <div>{`Longitude: ${this.state.long} Latitude: ${this.state.lat} Zoom: ${this.state.zoom}`}</div>
         <Map style={`mapbox://styles/mapbox/${this.state.mapstyle}-v9`}
-          center={[long, lat]}
+          center={[this.state.long, this.state.lat]}
           containerStyle={{
             height: "100%",
             width: "100%"
@@ -94,15 +110,22 @@ class Mapbox extends Component {
           <Layer type="symbol"
             id="marker"
             layout={{ "icon-image": "marker-15" }}>
-            <Feature coordinates={[long, lat]} />
+            <Feature coordinates={[this.state.long, this.state.lat]} />
           </Layer>
         </Map>
       </div>
-      )}
-      </PizzaContext.Consumer>
     )
 
   }
 }
+
+const ContextMap = props => (
+  <PizzaContext.Consumer>
+    {({ context}) =>
+      <Mapbox
+        lat={context.lat}
+        long={context.long} />}
+  </PizzaContext.Consumer>
+)
 
 export default Mapbox;

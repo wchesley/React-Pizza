@@ -31,7 +31,7 @@ const App = () =>
 
 
 
-export default withAuthentication(locationProvider(App));
+export default withAuthentication(App);
 
 /*
 feature list:

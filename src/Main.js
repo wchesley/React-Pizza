@@ -8,6 +8,7 @@ import CheckOut from './checkout'
 import * as ROUTES from './constants/routes'
 import { FirebaseContext, firebaseWrapper } from './firebase/context';
 import withAuthentication from './session/context'
+import locationProvider from './Pizza/location'
 
 class Main extends React.Component {
     render() {
@@ -26,4 +27,4 @@ class Main extends React.Component {
 
 const wrappedMain = firebaseWrapper(Main);
 
-export default wrappedMain; 
+export default locationProvider(wrappedMain); 
