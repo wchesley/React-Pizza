@@ -1,5 +1,5 @@
 import Firebase from './firebase';
-
+import 'firebase/storage'
 const db = Firebase.firestore();
 
 const component_name = "Services/DB";
