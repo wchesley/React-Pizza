@@ -14,31 +14,13 @@ const Map = ReactMapboxGl({
 class Mapbox extends Component {
 
   state = {
-    long: -98.5795,
-    lat: 39.828175,
+    long: this.props.long,
+    lat: this.props.lat,
     zoom: 2,
     mapstyle: 'dark',
   };
 
-  componentWillMount() {
-    this.setLocation();
-  }
-  //
-  setLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.setState(() => {
-          return {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          }
-        }
-        );
-      });
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-  }
+ 
 
   getPizzaPlacesFromHereAPI() {
     const here_api_url = "https://places.cit.api.here.com/places/v1/autosuggest?";

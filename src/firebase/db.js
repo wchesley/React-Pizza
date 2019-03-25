@@ -1,6 +1,6 @@
-import firebase from './firebase';
+import Firebase from './firebase';
 
-const db = firebase.firestore();
+const db = Firebase.firestore();
 
 const component_name = "Services/DB";
 

@@ -64,7 +64,7 @@ class OrderHistory extends Component{
     render(){
 
         return (
-            <React.Fragment>
+            <>
                 <h3>Orders for: {this.props.email}</h3>
                 <div className="row">
                     <table className="table table-hover">
@@ -83,7 +83,7 @@ class OrderHistory extends Component{
                         </thead>
                     </table>
                 </div>            
-            </React.Fragment>
+            </>
         );
     }
 

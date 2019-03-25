@@ -1,5 +1,7 @@
-import app from 'firebase/app';
-import 'firebase/auth';
+import * as app from 'firebase';
+
+
+
 const config = {
     apiKey: process.env.REACT_APP_FIREBASE_apiKey,
     authDomain: process.env.REACT_APP_FIREBASE_authDomain,
@@ -13,6 +15,7 @@ class Firebase {
     constructor() {
         app.initializeApp(config);
         this.auth = app.auth();
+        this.db = app.database();
     }
 
 

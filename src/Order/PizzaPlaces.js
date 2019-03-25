@@ -13,7 +13,7 @@ class PizzaPlaces extends Component{
             pizza_place_list: [],            
         }
 
-        this.getPizzaPlacesFromHereAPI = this.getPizzaPlacesFromHereAPI.bind(this);        
+        //this.getPizzaPlacesFromHereAPI = this.getPizzaPlacesFromHereAPI.bind(this);        
     }
 
     componentDidMount(){
