@@ -21,8 +21,10 @@ const AuthorizedNavBar = () =>
         <li><Link to={ROUTES.ORDER}>Home</Link></li>
         <li><Link to={ROUTES.CONFIRM_ORDER}>Cart</Link></li>
         <li><Link to={ROUTES.HISTORY}>Order History</Link></li>
-        <SignOutButton />
+         <SignOutButton />
+       
     </ul>
+    
 
 const DefaultNavBar = () =>
     <ul>
