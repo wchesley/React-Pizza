@@ -3,7 +3,7 @@ import React from 'react';
 import { firebaseWrapper } from '../firebase/context';
 
 const SignOutButton = ({ firebase }) => (
-  <button type="button" onClick={firebase.signOut}>
+  <button className="btn-lg btn-outline-light" onClick={firebase.signOut}>
     Sign Out
   </button>
 );
