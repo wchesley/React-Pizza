@@ -15,6 +15,7 @@ import Main from './Main'
 import Header from './components/header'
 import NavBar from './components/navBar'
 import { FirebaseContext, firebaseWrapper } from './firebase/context';
+import  locationProvider from './Pizza/location'
 import withAuthentication from './session/authenticated';
 
 const App = () =>
@@ -29,7 +30,8 @@ const App = () =>
   </div >
 
 
-export default withAuthentication(App);
+
+export default withAuthentication(locationProvider(App));
 
 /*
 feature list:
