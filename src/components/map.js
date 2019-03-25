@@ -1,37 +1,26 @@
 import React, { Component } from 'react';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
-
+import PizzaContext from '../Pizza'
+import Pizza from '../Pizza';
 /*************
  * TODO: 
  * Fix styling
 *************/
 
 const Map = ReactMapboxGl({
-  //accessToken: "pk.eyJ1Ijoid2NoZXNsZXkiLCJhIjoiY2pzbWgwbjhtMDFnODQ1bGp4cGF0bmR6NCJ9.JCEGA_jl88e7yuqeuD7cBA", 
   accessToken: process.env.REACT_APP_MAPBOX_KEY
 });
 
 class Mapbox extends Component {
 
   state = {
-    lng: -98.5795,
-    lat: 39.828175,
+    //lng: -98.5795,
+    //glat: 39.828175,
     zoom: 2,
     mapstyle: 'dark',
   };
 
-  componentDidMount() {
-
-    //get location from browser
-    this.setLocation();
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-
-    if (this.state.lat !== prevState.lat || this.state.lng !== prevState.lng) {
-      this.getPizzaPlacesFromHereAPI();
-    }
-  }
+  
 
   getPizzaPlacesFromHereAPI() {
     const here_api_url = "https://places.cit.api.here.com/places/v1/autosuggest?";
@@ -88,45 +77,29 @@ class Mapbox extends Component {
       .catch(error => console.error(error));
   }
 
-
-  //get permission to grab user location or use state defaults. 
-  setLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-
-        this.setState(() => {
-          return {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          }
-        }
-        );
-      });
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-  }
-
   render() {
-    const { lng, lat, zoom, mapstyle } = this.state;
+    //const { lng, lat, zoom, mapstyle } = this.state;
 
     return (
+      <PizzaContext.Consumer>
+        {({lat, long }) => (
       <div className="container">
-
-        <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
-        <Map style={`mapbox://styles/mapbox/${mapstyle}-v9`}
-          center={[lng, lat]}
+        <div>{`Longitude: ${long} Latitude: ${lat} Zoom: ${this.state.zoom}`}</div>
+        <Map style={`mapbox://styles/mapbox/${this.state.mapstyle}-v9`}
+          center={[long, lat]}
           containerStyle={{
-            height: "400px",
+            height: "100%",
             width: "100%"
           }}>
           <Layer type="symbol"
             id="marker"
             layout={{ "icon-image": "marker-15" }}>
-            <Feature coordinates={[lng, lat]} />
+            <Feature coordinates={[long, lat]} />
           </Layer>
         </Map>
       </div>
+      )}
+      </PizzaContext.Consumer>
     )
 
   }
